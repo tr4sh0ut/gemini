@@ -13,6 +13,7 @@ sudo apt-get install screen -y
 sudo apt-get install cmatrix -y
 sudo apt-get install libnl-3-dev libnl-genl-3-dev -y
 sudo apt-get install pcap* -y
+sudo apt-get install hashcat
 
 echo "-------------------Cloning eaphammer-------------------"
 git clone https://github.com/s0lst1c3/eaphammer.git
