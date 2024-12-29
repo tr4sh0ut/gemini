@@ -2,27 +2,26 @@ A Swiss Army Pi revamp; the original can rest in peace.<br/>
 
 Included tools (wip):<br/>
 
-HCXDumpTool<br/>
-Eaphammer<br/>
-Wifite<br/>
-Fluxion<br/>
-NMap<br/>
 BeEF<br/>
+CMatrix<br/>
+Eaphammer<br/>
+Fluxion<br/>
+HCXDumpTool (not to be confused with HCXDumpTools)<br/>
 Osintgram<br/>
 Screen<br/>
-CMatrix<br/>
-
-
+Wifite<br/>
 
 Requirements (will be installed by installer):<br/>
 
+Aircrack-NG<br/>
 Git<br/>
-Pip<br/>
-Python3<br/>
 HCXTools<br/>
 MacChanger<br/>
 NMap<br/>
-
+Pip<br/>
+Python3<br/>
+Reaver<br/>
+Wireshark<br/>
 
 To Install:<br/>
 
