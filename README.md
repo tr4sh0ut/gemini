@@ -31,7 +31,7 @@ Open terminal and copy/paste/type:<br/>
 or<br/>
 The geminiInstall script can also be copied and pasted into a local text file with the ".sh" extension instead, then follow the next steps<br/>
 
-2. Sudo chmod +x geminiInstall.sh<br/>
+2. sudo chmod +x geminiInstall.sh<br/>
 
 3. *PLEASE DO NOT RUN THE FOLLOWING AS ROOT, THIS WILL BREAK SOME PACKAGES AND THE ALIAS CREATED AT THE END*<br/>
 ./geminiInstall.sh<br/>
