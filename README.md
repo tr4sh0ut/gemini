@@ -29,7 +29,7 @@ To Install:<br/>
 Open terminal and copy/paste/type:<br/>
 1. git clone https://github.com/tr4sh0ut/gemini<br/>
 or<br/>
-1. The geminiInstall script can also be copied and pasted into a local text file with the ".sh" extension instead, then follow the next steps<br/>
+The geminiInstall script can also be copied and pasted into a local text file with the ".sh" extension instead, then follow the next steps<br/>
 
 2. Sudo chmod +x geminiInstall.sh<br/>
 
