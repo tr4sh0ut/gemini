@@ -221,6 +221,7 @@ sudo chmod +x gemini.sh
 echo 'Creating Alias "hack"'
 touch $currentDir/.bash_aliases
 echo 'alias hack='"$hereIam" >> $currentDir/.bash_aliases
+mv .bash_aliases ~
 
 echo 'Please Enjoy Responsibly'
 echo 'Open a new terminal and type "hack" to begin.'
