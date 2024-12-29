@@ -1,0 +1,229 @@
+#begins installing prereqs and packages
+
+sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get install git -y
+sudo apt-get install pip -y
+sudo apt-get install python3*-venv -y
+sudo apt-get install wifite -y 
+sudo apt-get install hcxdumptool -y
+sudo apt-get install hcxtools -y
+sudo apt-get install macchanger -y
+sudo apt-get install nmap -y
+sudo apt-get install screen -y
+sudo apt-get install cmatrix -y
+
+echo "-------------------Cloning eaphammer-------------------"
+git clone https://github.com/s0lst1c3/eaphammer.git
+clear
+
+echo "-------------------Cloning BeEF-------------------"
+git clone https://github.com/beefproject/beef.git
+clear
+
+echo "-------------------Cloning Osintgram-------------------"
+git clone https://github.com/Datalux/Osintgram
+clear
+
+echo "-------------------Cloning Fluxion-------------------"
+git clone https://www.github.com/FluxionNetwork/fluxion.git
+clear
+
+echo "-------------------Installing eaphammer-------------------"
+sudo ./eap*/raspbian-setup
+
+echo "-------------------Installing BeEF-------------------"
+sudo ./beef/install
+
+python3 -m venv venv
+
+source venv/bin/activate
+
+echo "-------------------Installing Osintgram-------------------"
+cd Osintgram
+pip install -r requirements.txt --break-system-packages
+clear
+
+cd ..
+
+#asking the user for instagram login
+read -p "Please enter your Instagram username:" Username
+read -p "Please enter your Instagram password:" Password
+
+sed -i 's/username =*/username =$Username/g' /Osintgram/config/credentials.ini
+sed -i 's/password =*/password =$Password/g' /Osintgram/config/credentials.ini
+
+clear
+
+#fetches current working directory and stores as variable
+currentDir=$(pwd)
+hereIam="$currentDir/gemini.sh"
+
+#creates an executable script for the hack selection menu
+echo 'Creating Selection Menu'
+
+cat > gemini.sh <<'endmsg'
+#!/bin/bash
+
+# Define unique names for each option
+OPTION_1="HCXDumpTool"
+OPTION_2="Eaphammer"
+OPTION_3="Wifite"
+OPTION_4="Fluxion"
+OPTION_5="BeEF"
+OPTION_6="Osintgram"
+OPTION_7="Matrix"
+OPTION_8="Quit"
+SUBOPTION_1="wlan0"
+SUBOPTION_2="wlan1"
+SUBOPTION_3="custom"
+SUBOPTION_4="test"
+
+# Function to display the menu
+function show_menu {
+    while true; do
+        clear # Clears display before showing options
+        
+        options=("$OPTION_1" "$OPTION_2" "$OPTION_3" "$OPTION_4" "$OPTION_5" "$OPTION_6" "$OPTION_7" "$OPTION_8") # Array of options
+        subOptions=("$SUBOPTION_1" "$SUBOPTION_2" "$SUBOPTION_3") # Fixed spacing
+        
+        PS3='Please enter your choice: '
+        select opt in "${options[@]}"; do
+            case $opt in
+                "$OPTION_1")
+                    echo "You chose HCXDumpTool"
+                    echo "Please select a wireless device"
+                    select subOpt in "${subOptions[@]}"; do
+                        case $subOpt in
+                            "$SUBOPTION_1")
+                                echo "You chose wlan0"
+                                read -p "Please press enter to begin"
+                                sudo hcxdumptool -i wlan0 -w hcxdumpfile.pcapng -f rds=1
+                                ;;
+                            "$SUBOPTION_2")
+                                echo "You chose wlan1"
+                                read -p "Please press enter to begin"
+                                sudo hcxdumptool -i wlan1 -w hcxdumpfile.pcapng -f rds=1
+                                ;;
+                            "$SUBOPTION_3")
+                                read -p "Please enter an interface name: " custom
+                                if [ -z "$custom" ]; then
+                                    echo "No interface name provided. Returning to main menu."
+                                    break
+                                fi
+                                read -p "Please press enter to begin"
+                                sudo hcxdumptool -i "$custom" --w hcxdumpfile.pcapng -f rds=1
+                                ;;
+                                *)
+                                echo "Invalid option $REPLY"
+                                continue
+                                ;;
+                        esac  # After processing subOptions, break the inner select loop
+                        
+                        clear
+                        echo "Creating hashcat file and SSID list"
+                        sudo hcxpcapngtool -o hash.hc22000 -E essidlist hcxdumpfile.pcapng #saves files to launch directory
+                        read -p "Press enter to finish"
+                        clear
+                        break
+                    done
+                    ;;
+                "$OPTION_2")
+                    echo "You chose Eaphammer"
+                      echo "Please select a wireless device"
+                    select subOpt in "${subOptions[@]}"; do
+                        case $subOpt in
+                            "$SUBOPTION_1")
+                                echo "You chose wlan0"
+                                read -p "Please enter WiFi connection name:" wifiName
+                                read -p "Please press enter to begin"
+                                sudo ./eaphammer/eaphammer -i wlan0 --channel 4 --auth wpa-eap --essid "$wifiName" --creds
+                                ;;
+                            "$SUBOPTION_2")
+                                echo "You chose wlan1"
+                                read -p "Please enter WiFi connection name:" wifiName
+                                read -p "Please press enter to begin"
+                                sudo ./eaphammer/eaphammer -i wlan1 --channel 4 --auth wpa-eap --essid "$wifiName" --creds
+                                ;;
+                            "$SUBOPTION_3")
+                                read -p "Please enter an interface name: " custom
+                                if [ -z "$custom" ]; then
+                                    echo "No interface name provided. Returning to main menu."
+                                    break
+                                fi
+                                read -p "Please enter WiFi connection name:" wifiName
+                                read -p "Please press enter to begin"
+                                sudo ./eaphammer/eaphammer -i $custom --channel 4 --auth wpa-eap --essid "$wifiName" --creds
+                                ;;
+                             "$SUBOPTION_4")
+                                echo "You chose the test interface wlxa842a105c8ab"
+                                read -p "Please enter WiFi connection name:" wifiName
+                                read -p "Press enter to begin"
+                                sudo ./eaphammer/eaphammer -i wlxa842a105c8ab --channel 4 --auth wpa-eap --essid "$wifiName" --creds 
+                                ;;
+                            *)
+                                echo "Invalid option $REPLY"
+                                continue
+                                ;;
+                         esac
+                        break
+                    done
+                    ;;
+
+                "$OPTION_3")
+                    echo "You chose Wifite"
+                    read -p "Please press enter to begin"
+                    sudo wifite
+        	    ;;
+        	"$OPTION_4")
+		    echo "You chose Fluxion"
+		    read -p "Please press enter to begin"
+		    sudo ./fluxion/fluxion.sh
+		    ;;
+                "$OPTION_5")
+		    echo "You chose BeEF"
+                    read -p "Please press enter to begin"
+                    cd beef
+                    sudo ./beef
+                    cd ..
+                    ;;
+                "$OPTION_6")
+                    echo "You chose Osintgram"
+                    read -p "Please enter target username:" target
+                    read -p "Press enter to begin"
+                    sudo python3 /Osintgram/main.py $target
+                    ;;
+                "$OPTION_7")
+                    echo "Hackervoice: I'm in"
+                    read -p "Press enter to begin"
+                    cmatrix
+                    ;;
+                "$OPTION_8")
+                    echo "Exiting..."
+                    exit 0
+                    ;;
+                *)
+                    echo "Invalid option $REPLY"
+                    ;;
+            esac
+            # After processing main options, break the outer select loop
+            break
+        done
+    done
+}
+
+# Display the menu
+show_menu
+endmsg
+#makes the menu file executable
+sudo chmod +x gemini.sh
+
+#sets the word "hack" as an alias to launch the script
+echo 'Creating Alias "hack"'
+touch $currentDir/.bash_aliases
+echo 'alias hack='"$hereIam" >> $currentDir/.bash_aliases
+
+echo 'Please Enjoy Responsibly'
+echo 'Open a new terminal and type "hack" to begin.'
+echo 'Press Enter to Finish...'
+read return
+exit
