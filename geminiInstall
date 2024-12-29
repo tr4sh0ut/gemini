@@ -15,6 +15,7 @@ sudo apt-get install libnl-3-dev libnl-genl-3-dev -y
 sudo apt-get install pcap* -y
 sudo apt-get install hashcat -y
 sudo apt-get install bully -y
+sudo apt-get install x11-utils
 
 echo "-------------------Cloning eaphammer-------------------"
 git clone https://github.com/s0lst1c3/eaphammer.git
