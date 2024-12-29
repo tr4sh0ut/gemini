@@ -1,24 +1,24 @@
-A Swiss Army Pi revamp; the original can rest in peace.
+A Swiss Army Pi revamp; the original can rest in peace.<br/>
 
-Included tools (wip):
+Included tools (wip):<br/>
 
-HCXDumpTool
-Eaphammer
-Wifite
-Fluxion
-NMap
-BeEF
-Osintgram
-Screen
-CMatrix
+HCXDumpTool<br/>
+Eaphammer<br/>
+Wifite<br/>
+Fluxion<br/>
+NMap<br/>
+BeEF<br/>
+Osintgram<br/>
+Screen<br/>
+CMatrix<br/>
 
 
 
-Requirements (will be installed by installer):
+Requirements (will be installed by installer):<br/>
 
-Git
-Pip
-Python3
-HCXTools
-MacChanger
-NMap
+Git<br/>
+Pip<br/>
+Python3<br/>
+HCXTools<br/>
+MacChanger<br/>
+NMap<br/>
