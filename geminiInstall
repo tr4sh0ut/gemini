@@ -11,6 +11,8 @@ sudo apt-get install macchanger -y
 sudo apt-get install nmap -y
 sudo apt-get install screen -y
 sudo apt-get install cmatrix -y
+sudo apt-get install libnl-3-dev libnl-genl-3-dev -y
+sudo apt-get install pcap* -y
 
 echo "-------------------Cloning eaphammer-------------------"
 git clone https://github.com/s0lst1c3/eaphammer.git
@@ -32,7 +34,9 @@ echo "-------------------Installing eaphammer-------------------"
 sudo ./eap*/raspbian-setup
 
 echo "-------------------Installing BeEF-------------------"
-sudo ./beef/install
+cd beef
+sudo ./install
+sudo bundle install
 
 python3 -m venv venv
 
@@ -76,7 +80,6 @@ OPTION_8="Quit"
 SUBOPTION_1="wlan0"
 SUBOPTION_2="wlan1"
 SUBOPTION_3="custom"
-SUBOPTION_4="test"
 
 # Function to display the menu
 function show_menu {
@@ -153,12 +156,6 @@ function show_menu {
                                 read -p "Please enter WiFi connection name:" wifiName
                                 read -p "Please press enter to begin"
                                 sudo ./eaphammer/eaphammer -i $custom --channel 4 --auth wpa-eap --essid "$wifiName" --creds
-                                ;;
-                             "$SUBOPTION_4")
-                                echo "You chose the test interface wlxa842a105c8ab"
-                                read -p "Please enter WiFi connection name:" wifiName
-                                read -p "Press enter to begin"
-                                sudo ./eaphammer/eaphammer -i wlxa842a105c8ab --channel 4 --auth wpa-eap --essid "$wifiName" --creds 
                                 ;;
                             *)
                                 echo "Invalid option $REPLY"
