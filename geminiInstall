@@ -40,6 +40,7 @@ echo "-------------------Installing BeEF-------------------"
 cd beef
 sudo ./install
 sudo bundle install
+cd ..
 
 python3 -m venv venv
 
