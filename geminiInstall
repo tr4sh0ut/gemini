@@ -100,12 +100,12 @@ function show_menu {
                             "$SUBOPTION_1")
                                 echo "You chose wlan0"
                                 read -p "Please press enter to begin"
-                                sudo hcxdumptool -i wlan0 -w hcxdumpfile.pcapng -f rds=1
+                                sudo hcxdumptool -i wlan0 -o dumpfile.pcapng --active_beacon --enable_status=15
                                 ;;
                             "$SUBOPTION_2")
                                 echo "You chose wlan1"
                                 read -p "Please press enter to begin"
-                                sudo hcxdumptool -i wlan1 -w hcxdumpfile.pcapng -f rds=1
+                                sudo hcxdumptool -i wlan1 -o dumpfile.pcapng --active_beacon --enable_status=15
                                 ;;
                             "$SUBOPTION_3")
                                 read -p "Please enter an interface name: " custom
@@ -114,7 +114,7 @@ function show_menu {
                                     break
                                 fi
                                 read -p "Please press enter to begin"
-                                sudo hcxdumptool -i "$custom" --w hcxdumpfile.pcapng -f rds=1
+                                sudo hcxdumptool -i "$custom" -o dumpfile.pcapng --active_beacon --enable_status=15
                                 ;;
                                 *)
                                 echo "Invalid option $REPLY"
