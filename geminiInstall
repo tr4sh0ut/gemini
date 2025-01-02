@@ -16,7 +16,14 @@ sudo apt-get install pcap* -y
 sudo apt-get install hashcat -y
 sudo apt-get install bully -y
 sudo apt-get install x11-utils -y 
-sudo apt-get install pem -y
+sudo pip3 install pem --break-system-packages
+sudo pip3 install pyOpenSSL --break-system-packages
+sudo pip install tqdm --break-system-packages
+sudo pip3 install flask --break-system-packages
+sudo pip3 install flask_cors --break-system-packages
+sudo pip3 install flask_socketio --break-system-packages
+sudo pip3 install pywebcopy --break-system-packages
+sudo pip3 install bs4 --break-system-packages
 
 echo "-------------------Cloning eaphammer-------------------"
 git clone https://github.com/s0lst1c3/eaphammer.git
