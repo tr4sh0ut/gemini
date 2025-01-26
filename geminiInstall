@@ -16,6 +16,7 @@ sudo apt-get install pcap* -y
 sudo apt-get install hashcat -y
 sudo apt-get install bully -y
 sudo apt-get install x11-utils -y 
+sudo apt-get install ettercap-text-only -y
 sudo pip3 install pem --break-system-packages
 sudo pip3 install pyOpenSSL --break-system-packages
 sudo pip install tqdm --break-system-packages
@@ -24,6 +25,9 @@ sudo pip3 install flask_cors --break-system-packages
 sudo pip3 install flask_socketio --break-system-packages
 sudo pip3 install pywebcopy --break-system-packages
 sudo pip3 install bs4 --break-system-packages
+
+echo "-------------------Cloninc Airgeddon-------------------"
+git clone --depth 1 https://github.com/v1s1t0r1sh3r3/airgeddon.git
 
 echo "-------------------Cloning eaphammer-------------------"
 git clone https://github.com/s0lst1c3/eaphammer.git
@@ -85,10 +89,11 @@ OPTION_1="HCXDumpTool"
 OPTION_2="Eaphammer"
 OPTION_3="Wifite"
 OPTION_4="Fluxion"
-OPTION_5="BeEF"
-OPTION_6="Osintgram"
-OPTION_7="Matrix"
-OPTION_8="Quit"
+OPTION_5="Airgeddon"
+OPTION_6="BeEF"
+OPTION_7="Osintgram"
+OPTION_8="Matrix"
+OPNTION_9="Quit"
 SUBOPTION_1="wlan0"
 SUBOPTION_2="wlan1"
 SUBOPTION_3="custom"
@@ -98,7 +103,7 @@ function show_menu {
     while true; do
         clear # Clears display before showing options
         
-        options=("$OPTION_1" "$OPTION_2" "$OPTION_3" "$OPTION_4" "$OPTION_5" "$OPTION_6" "$OPTION_7" "$OPTION_8") # Array of options
+        options=("$OPTION_1" "$OPTION_2" "$OPTION_3" "$OPTION_4" "$OPTION_5" "$OPTION_6" "$OPTION_7" "$OPTION_8" "$OPTION_9") # Array of options
         subOptions=("$SUBOPTION_1" "$SUBOPTION_2" "$SUBOPTION_3") # Fixed spacing
         
         PS3='Please enter your choice: '
@@ -188,25 +193,30 @@ function show_menu {
 		    read -p "Please press enter to begin"
 		    sudo ./fluxion/fluxion.sh
 		    ;;
-                "$OPTION_5")
+		"$OPTION_5")
+		    echo "You chose Airgeddon"
+		    read -p "Please press enter to begin"
+		    sudo ./airgeddon/airgeddon.sh
+		    ;;
+                "$OPTION_6")
 		    echo "You chose BeEF"
                     read -p "Please press enter to begin"
                     cd beef
                     sudo ./beef
                     cd ..
                     ;;
-                "$OPTION_6")
+                "$OPTION_7")
                     echo "You chose Osintgram"
                     read -p "Please enter target username:" target
                     read -p "Press enter to begin"
                     sudo python3 /Osintgram/main.py $target
                     ;;
-                "$OPTION_7")
+                "$OPTION_8")
                     echo "Hackervoice: I'm in"
                     read -p "Press enter to begin"
                     cmatrix
                     ;;
-                "$OPTION_8")
+                "$OPTION_9")
                     echo "Exiting..."
                     exit 0
                     ;;
