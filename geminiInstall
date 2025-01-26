@@ -17,6 +17,7 @@ sudo apt-get install hashcat -y
 sudo apt-get install bully -y
 sudo apt-get install x11-utils -y 
 sudo apt-get install ettercap-text-only -y
+sudo apt-get install crunch -y
 sudo pip3 install pem --break-system-packages
 sudo pip3 install pyOpenSSL --break-system-packages
 sudo pip install tqdm --break-system-packages
