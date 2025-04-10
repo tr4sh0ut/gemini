@@ -5,9 +5,9 @@ Included tools (wip):<br/>
 BeEF<br/>
 CMatrix<br/>
 Eaphammer<br/>
-Fluxion<br/>
+<del>Fluxion</del><br/>
 HCXDumpTool (not to be confused with HCXDumpTools)<br/>
-Osintgram<br/>
+<del>Osintgram</del><br/>
 Screen<br/>
 Wifite<br/>
 
@@ -36,3 +36,6 @@ The geminiInstall script can also be copied and pasted into a local text file wi
 ./geminiInstall.sh<br/>
 
 4. Then please follow the prompts as they appear - you will need to enter your Root password for some softwares<br/>
+
+
+The removed tools just didn't run without a GUI interface, there's ways around that but I figured I'd just use alternate tools - stay tuned for that
